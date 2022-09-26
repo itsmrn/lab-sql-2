@@ -32,7 +32,7 @@ select * from film;
 select avg(length) from film;
 
 -- What's the average movie duration expressed in format (hours, minutes)?
-select avg(length) from film;
+select convert(avg(length),time) as hours_min from film;
 
 -- How many movies longer than 3 hours?
 select count(length) from film where length > 180;
@@ -42,8 +42,7 @@ select*, left(issued, position("" in issued)-1) from card; -- thi is the solutio
 
 -- Get the name and email formatted. Example: Mary SMITH - mary.smith@sakilacustomer.org.
 select * from customer;
-select*, left (email, position("@" in email)-1) from customer;
-select*, replace(left (email, position("@" in email)-1),"."," ") from customer; -- first we separate name at the @ string and then replace "." by space
+select concat(first_name, " ", last_name, " - ", email) as name_email_formatted from customer;
 
 -- What's the length of the longest film title?
 select * from film;
